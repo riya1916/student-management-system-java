@@ -17,14 +17,20 @@ public class Student {
     private String course;
 
     //below I have initialised contructor for java to create object to store proper data
-    Student(int rollNo, String name, String email,String course){
+    public Student(int rollNo, String name, String email,String course){
         this.rollNo = rollNo;
         this.name = name;
         this.email= email;
         this.course = course;
 
     }
-
+    @Override
+    public String toString() {
+        return "ID: " + rollNo +
+               ", Name: " + name +
+               ", Email: " + email +
+               ", Course: " + course;
+    }
     public int getRollNo() { return rollNo; }//not adding setter because this is unique and should not be mutable in future
     public String getName() { return name; }
     public void setName(String name) {
