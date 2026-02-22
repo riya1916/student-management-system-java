@@ -9,6 +9,7 @@ public class StudentService {
 
     ArrayList<Student> addStudents = new ArrayList<>();
 //to add students
+/* 
     public void addStudent() {
 
         Student s1 = new Student(1, "Riya", "test1@gmail.com", "CSE");
@@ -20,10 +21,24 @@ public class StudentService {
         Student s3 = new Student(3,"Ayush", "ayush@gmail.com","Commerce");
         addStudents.add(s3);
 
-    }
+    }*/
+    public void addStudent(int rollNo, String name, String email, String course) {
+    
+    Student s = new Student(rollNo, name, email, course);
+    addStudents.add(s);
+    System.out.println("Student added successfully");
+}
     ///to display students
     public void displayStudents(){
         for(Student st : addStudents){
+            System.out.println(st);
+        }
+    }
+
+    //to Search Student
+    public void searchStudent(int id){
+        for(Student st : addStudents){
+            if(st.getRollNo()== id)
             System.out.println(st);
         }
     }

@@ -10,7 +10,7 @@ package model;
 ✔ getters/setters
 ✔ display-friendly representation*/
 public class Student {
-    //I have created privae variable so that it should not get accessed by any of the object or construtor and no one muate it
+    //I have created privae variable so that it should not get accessed by any of the object or construtor and no one mutate it
     private int rollNo;
     private String name;
     private String email;
