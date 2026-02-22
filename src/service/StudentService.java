@@ -23,10 +23,28 @@ public class StudentService {
 
     }*/
     public void addStudent(int rollNo, String name, String email, String course) {
+        for(Student st : addStudents){
+            if(st.getRollNo()== rollNo){
+                System.out.println("Student already added, please choose another roll no.");
+                return;
+            }
+            }
+        if(name == null ||  name.isBlank()){
+            System.out.println("Name can not be blank.");
+            return;
+        }
+        if(email == null ||  !email.contains("@")){
+            System.out.println("Email format is invalid.");
+            return;
+        }
+        if(course == null ||  course.isBlank()){
+            System.out.println("Course can not be blank.");
+            return;
+        }
+                Student s = new Student(rollNo, name, email, course);
+                addStudents.add(s);
+                System.out.println("Student added successfully");
     
-    Student s = new Student(rollNo, name, email, course);
-    addStudents.add(s);
-    System.out.println("Student added successfully");
 }
     ///to display students
     public void displayStudents(){
@@ -37,9 +55,15 @@ public class StudentService {
 
     //to Search Student
     public void searchStudent(int id){
+        boolean found = false;
+
         for(Student st : addStudents){
             if(st.getRollNo()== id)
+                found = true;
             System.out.println(st);
+        }
+        if(!found){
+            System.out.println("Student not found");
         }
     }
     //to remove students
