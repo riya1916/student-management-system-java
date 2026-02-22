@@ -22,6 +22,7 @@ public class StudentService {
         addStudents.add(s3);
 
     }*/
+    /* here we have handled basic validation of null values-- 
     public void addStudent(int rollNo, String name, String email, String course) {
         for(Student st : addStudents){
             if(st.getRollNo()== rollNo){
@@ -45,6 +46,30 @@ public class StudentService {
                 addStudents.add(s);
                 System.out.println("Student added successfully");
     
+}*/
+//Now we gonnna check
+public void addStudent(int rollNo, String name, String email, String course) {
+    for(Student st : addStudents){
+        if(st.getRollNo()== rollNo){
+            //System.out.println("Student already added, please choose another roll no.");
+            throw new IllegalArgumentException("Student already added, please choose another roll no.");
+            //return;
+        }
+        }
+    if(name == null ||  name.isBlank()){
+        throw new IllegalArgumentException("Name can not be blank.");
+    }
+    if(email == null ||  !email.contains("@")){
+        throw new IllegalArgumentException("Email format is invalid.");
+        
+    }
+    if(course == null ||  course.isBlank()){
+        throw new IllegalArgumentException("Course can not be blank.");
+    }
+            Student s = new Student(rollNo, name, email, course);
+            addStudents.add(s);
+            //System.out.println("Student added successfully");
+
 }
     ///to display students
     public void displayStudents(){

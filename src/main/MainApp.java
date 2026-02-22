@@ -48,6 +48,14 @@ public class MainApp {
 
                     System.out.println("Enter course ");
                     String course = sc.nextLine();
+
+                    try{
+                        service.addStudent(rollNo,name, email, course);
+                        System.out.println("Student added successfully.");
+                    }
+                    catch(IllegalArgumentException e){
+                        System.out.println("Error: " + e.getMessage());
+                    }
                     service.addStudent(rollNo,name, email, course);
                     break;
                 case 2:
