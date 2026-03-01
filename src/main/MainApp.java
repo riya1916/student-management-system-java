@@ -6,6 +6,7 @@ import service.StudentService;
 
 public class MainApp {
     public static void main(String args[]){
+
         /*StudentService service = new StudentService();
 
         service.addStudent();
@@ -23,6 +24,7 @@ public class MainApp {
 
         Scanner sc =  new Scanner(System.in);
         StudentService service = new StudentService();
+        service.loadFromFile();
         while(true){
             System.out.println("1. Add Student");
             System.out.println("2. View Student");
@@ -56,7 +58,7 @@ public class MainApp {
                     catch(IllegalArgumentException e){
                         System.out.println("Error: " + e.getMessage());
                     }
-                    service.addStudent(rollNo,name, email, course);
+                    //service.addStudent(rollNo,name, email, course);
                     break;
                 case 2:
                     //view student
@@ -79,6 +81,8 @@ public class MainApp {
                     System.out.println("Choice doesn't exist....");
                     
             }
+            
+
         }
     }
 }

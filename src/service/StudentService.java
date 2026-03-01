@@ -1,5 +1,7 @@
 package service;
 import java.util.ArrayList;
+import java.io.*;
+
 
 import model.Student;
 
@@ -8,6 +10,7 @@ import model.Student;
 public class StudentService {
 
     ArrayList<Student> addStudents = new ArrayList<>();
+    public static final String FILE_NAME = "student.txt";
 //to add students
 /* 
     public void addStudent() {
@@ -69,7 +72,7 @@ public void addStudent(int rollNo, String name, String email, String course) {
             Student s = new Student(rollNo, name, email, course);
             addStudents.add(s);
             //System.out.println("Student added successfully");
-
+            saveToFile();
 }
     ///to display students
     public void displayStudents(){
@@ -83,9 +86,11 @@ public void addStudent(int rollNo, String name, String email, String course) {
         boolean found = false;
 
         for(Student st : addStudents){
-            if(st.getRollNo()== id)
+            if(st.getRollNo()== id){
                 found = true;
-            System.out.println(st);
+                System.out.println(st);
+            }
+                
         }
         if(!found){
             System.out.println("Student not found");
@@ -98,6 +103,7 @@ public void addStudent(int rollNo, String name, String email, String course) {
                 addStudents.remove(i);
             }
         }
+        saveToFile();
     }
     //to update students
     public void updateStudents(int rollNo, String name,String email, String course){
@@ -123,8 +129,58 @@ public void addStudent(int rollNo, String name, String email, String course) {
         else{
             System.out.println("Student " + rollNo + " details updated succesfully");
         }
+        saveToFile();
     }
+
+    public void saveToFile(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME)))
+        {
+            for( Student st : addStudents){
+                String line = st.getRollNo() + "," +
+                st.getName() + ","+
+                st.getEmail() + ","+
+                st.getCourse();
+
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error saving data to file.");
+        }
+    }
+
+    public void loadFromFile() {
+        addStudents.clear();
+        File file = new File(FILE_NAME);
+    
+        if (!file.exists()) {
+            return; // no file yet
+        }
+    
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+    
+            String line;
+    
+            while ((line = reader.readLine()) != null) {
+    
+                String[] data = line.split(",");
+    
+                int rollNo = Integer.parseInt(data[0]);
+                String name = data[1];
+                String email = data[2];
+                String course = data[3];
+    
+                Student st = new Student(rollNo, name, email, course);
+                addStudents.add(st);
+            }
+    
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading data from file.");
+        }
+    }
+    
 }
+
 
 
 
