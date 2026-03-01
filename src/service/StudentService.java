@@ -82,19 +82,17 @@ public void addStudent(int rollNo, String name, String email, String course) {
     }
 
     //to Search Student
-    public void searchStudent(int id){
-        boolean found = false;
+    //here now we have handled everything throw main, from here we will return not print.
+    public Student searchStudent(int id){
 
         for(Student st : addStudents){
             if(st.getRollNo()== id){
-                found = true;
-                System.out.println(st);
+                //System.out.println(st);
+                return st;
             }
                 
         }
-        if(!found){
-            System.out.println("Student not found");
-        }
+        throw new IllegalArgumentException("Student not found.");
     }
     //to remove students
     public void removeStudents(){

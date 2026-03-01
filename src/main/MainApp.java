@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 
+import model.Student;
 import service.StudentService;
 
 public class MainApp {
@@ -58,7 +59,7 @@ public class MainApp {
                     catch(IllegalArgumentException e){
                         System.out.println("Error: " + e.getMessage());
                     }
-                    //service.addStudent(rollNo,name, email, course);
+                    //service.addStudent(rollNo,name, email, course); This line was causing duplicate student added
                     break;
                 case 2:
                     //view student
@@ -71,7 +72,15 @@ public class MainApp {
                     System.out.println("Enter roll no of student to search");
                     int id = sc.nextInt();
                     sc.nextLine();
-                    service.searchStudent(id);
+                    //service.searchStudent(id);
+                    // here main will be responsible for display
+                    try {
+                        Student st = service.searchStudent(id);
+                        System.out.println(st);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 4:
                         System.out.println("Exiting....");
